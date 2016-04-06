@@ -142,7 +142,7 @@ MultipleFileUpload
 
         _searchBox: null,
 
-       
+        ppp : null,
 
         buildRendering: function () {
             this.inherited(arguments);
@@ -221,12 +221,18 @@ MultipleFileUpload
             this.addChild(this.tree);
 
             this.connect(this.tree, "onClick", "_onTreeNodeClick");
+
+          
         },
 
         _internalSetContent: function (value) {
             console.log('set value in contentselector')
             that.set('value', value);
             that.onChange(that.get('value'));
+
+            console.log('in render of contetn selector');
+
+            that.ppp(value);
         },
 
         layout: function () {

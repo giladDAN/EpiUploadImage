@@ -109,6 +109,8 @@ function (
         //      Search area for the search box.
         searchArea: null,
 
+        RRR : null,
+
         _setDisabledAttr: function (value) {
             this.inherited(arguments);
             this.button.set("disabled", value);
@@ -204,7 +206,7 @@ function (
                 }
             }
 
-
+            RRR = this;
             this.contentSelectorDialog = new ContentSelectorDialog({
                 canSelectOwnerContent: this.canSelectOwnerContent,
                 showButtons: false,
@@ -213,7 +215,11 @@ function (
                 restrictedTypes: this.restrictedTypes,
                 showAllLanguages: this.showAllLanguages,
                 showSearchBox: this.showSearchBox,
-                searchArea: this.searchArea
+                searchArea: this.searchArea,
+                ppp: function (value) {
+                    console.log('ppp');
+                    RRR._setValueAndFireOnChange(value);
+                }
             });
 
             this.dialog = new Dialog({
