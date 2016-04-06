@@ -245,6 +245,12 @@
     <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\blobs\6ab82c9908e24b00a37dc6161aa74267\bb6b242f94a24723bf11fbff6dc4c6b3.png" />
+    <Content Include="App_Data\blobs\6ab82c9908e24b00a37dc6161aa74267\dcc1b55768104220a495c7f747814a4c.png" />
+    <Content Include="App_Data\EPiServerDB_abe05a48.mdf" />
+    <Content Include="App_Data\EPiServerDB_abe05a48_log.ldf">
+      <DependentUpon>EPiServerDB_abe05a48.mdf</DependentUpon>
+    </Content>
     <Content Include="ClientResources\Scripts\editors\ContentSelectorDialog_extended.js" />
     <Content Include="ClientResources\Scripts\editors\ContentSelectorDialog_extended2.js" />
     <Content Include="ClientResources\Scripts\editors\contentSelector_extended.js" />
