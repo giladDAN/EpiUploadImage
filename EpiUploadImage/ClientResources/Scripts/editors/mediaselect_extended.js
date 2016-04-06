@@ -1,4 +1,10 @@
-﻿define([
+﻿/*
+ This is a widget copied from epi that open text box that open other modal window
+ that select content.
+*/
+
+
+define([
 // Dojo
     "dojo/_base/declare",
     "dojo/Deferred",
@@ -80,10 +86,16 @@
                 this._updateDisplayNode(content);
 
                 // We need to recreate the internal format before saving the data.
-                var urlFormatValue = content.permanentLink;
+                
+                //  var urlFormatValue = content.permanentLink; OC
+                var urlFormatValue = content.contentLink;
                 this._started && this.validate();
 
-                isModified = !epi.areEqual(this.value, urlFormatValue);
+                //this is for string , let change to content 
+                if (this.value) {
+                    isModified = !epi.areEqual(this.value.contentLink, urlFormatValue.contentLink);
+                } else { isModified = true;}
+
                 this.value = urlFormatValue;
 
                 if (this._isValueInitilized && isModified) {

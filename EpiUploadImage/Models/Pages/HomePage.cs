@@ -27,7 +27,7 @@ namespace EpiUploadImage.Models.Pages
         public virtual ContentReference Image { get; set; }
 
 
-        [EditorDescriptor(EditorDescriptorType = typeof(ImageUrlEditorDescriptorExtended))]
+        [EditorDescriptor(EditorDescriptorType = typeof(ImageUrlEditorDescriptorExtended))]      
         public virtual ContentReference Logotype1 { get; set; }
 
     }

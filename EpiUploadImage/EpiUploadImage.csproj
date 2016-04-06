@@ -245,6 +245,8 @@
     <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ClientResources\Scripts\editors\ContentSelectorDialog_extended.js" />
+    <Content Include="ClientResources\Scripts\editors\ContentSelectorDialog_extended2.js" />
     <Content Include="ClientResources\Scripts\editors\contentSelector_extended.js" />
     <Content Include="ClientResources\Scripts\editors\mediaselect_extended.js" />
     <Content Include="Views\Web.config" />

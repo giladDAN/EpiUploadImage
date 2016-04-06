@@ -21,7 +21,8 @@
 // epi.cms
     "epi-cms/core/ContentReference",
     "epi-cms/contentediting/ContentActionSupport",
-    "epi-cms/widget/ContentSelectorDialog",
+   // OC - old selector dialog "epi-cms/widget/ContentSelectorDialog",
+    "extended/editors/ContentSelectorDialog_extended",
     "epi-cms/widget/_SelectorBase",
 
 // resources
@@ -181,7 +182,9 @@ function (
 
             this._setValueAndFireOnChange(value);
         },
+        _setValuesExtended : function(){
 
+        } ,
         _getDialog: function () {
             // summary:
             //		Create page tree dialog
@@ -200,6 +203,7 @@ function (
                     title = stringUtil.substitute(localization.format, [name]);
                 }
             }
+
 
             this.contentSelectorDialog = new ContentSelectorDialog({
                 canSelectOwnerContent: this.canSelectOwnerContent,
