@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/giladDAN/EpiUploadImage.png?label=ready&title=Ready)](https://waffle.io/giladDAN/EpiUploadImage)
 # EpiUploadImage
 Add supoort to Upload Images inside a Media conent selector
 
