@@ -134,6 +134,12 @@ function (
 
         _searchBox: null,
 
+        //NEW
+        openWindow: function(value){
+        
+            console.log('2 open window');
+         },
+
         buildRendering: function () {
             this.inherited(arguments);
 
@@ -394,7 +400,7 @@ function (
             // upload 
             // only create diaglog if it is not available, otherwise, re-use it.
             var uploader = new MultipleFileUpload({
-                extra : { folder : content},
+                extra: { folder: content, openWindow: this.openWindow },
                 model: new MultipleFileUploadViewModel({
                     store: this.get("store"),
                     query: this.get("listQuery")
@@ -408,6 +414,10 @@ function (
 
             // close multiple files upload dialog when stop uploading
             uploader.on("close", lang.hitch(this, function (uploading) {
+
+                console.log('aaa');
+
+                // Need to close if finished upload ?
                 this._dialog && (uploading ? this._dialog.hide() : this._dialog.destroy());
             }));
 
@@ -441,7 +451,7 @@ function (
                 content:uploader,
                 autofocus: true,
                 defaultActionsVisible: false,
-                closeIconVisible: false
+                closeIconVisible: true
             });
 
             // only show close button for multiple files upload dialog
@@ -449,7 +459,9 @@ function (
                 name: "close",
                 label: "CLOSE!",
                 action: function () {
+                    console.log('close here in 2');
                     uploader.close();
+                   // self.hide();
                 }
             });
 
@@ -469,7 +481,7 @@ function (
                 // Set destination is current tree item.
                 uploader.set("uploadDirectory", targetId || this.get("currentTreeItem").id);
                 uploader.set("createAsLocalAsset", createAsLocalAsset);
-
+                uploader.set("openWindow", this.openWindow);
                 uploader.upload(fileList);
             }));
 

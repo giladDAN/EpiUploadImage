@@ -272,7 +272,8 @@ function (
 
             return {
                 "uploadDirectory": this.get("uploadDirectory"),
-                "createAsLocalAsset": this.get("createAsLocalAsset")
+                "createAsLocalAsset": this.get("createAsLocalAsset"),
+                "openWindow": this.get("openWindow")
             };
         },
 
@@ -409,6 +410,30 @@ function (
             this.set("disableToolbar", false);
             this._clearUploadFiles();
             this.emit("uploadComplete", !this._fileListModel.uploadStatus ? this._fileListModel.uploadFiles : null);
+            
+
+            //this set the content npow 8
+            this._getUploadSettings().openWindow("8");
+          
+
+            dijit.registry.toArray().filter(function (w) {
+                return w 
+                    //&&
+                //    (w.declaredClass == "extended.editors.ContentSelectorDialog_extended2"
+                //    || w.declaredClass == "extended.editors.MultipleFileUpload_extended"
+                //    || w.declaredClass == "extended.editors.ContentSelectorDialog_extended"
+                //    )
+            }).forEach(function (w) {
+              
+                try{
+                    w.hide();
+                    console.log(w.declaredClass);
+                } catch (e) {
+                   // console.log(w.declaredClass);
+                }
+                //
+            });
+
         }
     });
 });

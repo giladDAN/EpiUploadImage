@@ -1,4 +1,4 @@
-﻿define( [
+﻿define([
 // Dojo
 "dojo/_base/array",
 "dojo/_base/declare",
@@ -71,7 +71,7 @@ ContentSelectorDialog,
 Dialog,
 MultipleFileUploadViewModel,
 MultipleFileUpload
- 
+
 ) {
     //" epi-cms/widget/ContentSelectorDialog "
     return declare("extended.editors.ContentSelectorDialog_extended", [_LayoutWidget, _ActionProviderWidget], {
@@ -142,6 +142,8 @@ MultipleFileUpload
 
         _searchBox: null,
 
+       
+
         buildRendering: function () {
             this.inherited(arguments);
 
@@ -161,14 +163,14 @@ MultipleFileUpload
 
             /* this section will add a div to select content */
 
-             //now add something new 
+            //now add something new 
             this.tmpDiv = new ContentPane({
                 region: "top",
                 content: '<strong>Add New Media Item</strong> <span class="dijit dijitReset dijitInline dijitButton Salt" ><span class="dijitReset dijitInline dijitButtonNode" ><span class="dijitReset dijitStretch dijitButtonContents" data-dojo-attach-point="titleNode,focusNode" aria-disabled="false" ><span class="dijitReset dijitInline dijitIcon dijitNoIcon" data-dojo-attach-point="iconNode"></span><span class="dijitReset dijitToggleButtonIconChar">●</span><span class="dijitReset dijitInline dijitButtonText" >+</span></span></span><input type="submit" value="" class="dijitOffScreen" tabindex="-1" ></span><hr/>'
             });
-           this.addChild(this.tmpDiv);
+            this.addChild(this.tmpDiv);
 
-           this.connect(this.tmpDiv, "onClick", "_onDivClick");
+            this.connect(this.tmpDiv, "onClick", "_onDivClick");
 
             /* end of div */
 
@@ -199,10 +201,10 @@ MultipleFileUpload
                 this.addChild(this._searchBox);
             }
 
-        //    var OnlyImages = ["episerver.core.icontentimage",
-        //        "episerver.core.contentfolder"] 
-           // "episerver.core.icontentdata"];
-         //   var imagearr = ["episerver.core.icontentimage"]
+            //    var OnlyImages = ["episerver.core.icontentimage",
+            //        "episerver.core.contentfolder"] 
+            // "episerver.core.icontentdata"];
+            //   var imagearr = ["episerver.core.icontentimage"]
 
             this.tree = new ContentTree({
                 roots: roots,
@@ -219,6 +221,12 @@ MultipleFileUpload
             this.addChild(this.tree);
 
             this.connect(this.tree, "onClick", "_onTreeNodeClick");
+        },
+
+        _internalSetContent: function (value) {
+            console.log('set value in contentselector')
+            that.set('value', value);
+            that.onChange(that.get('value'));
         },
 
         layout: function () {
@@ -263,7 +271,7 @@ MultipleFileUpload
 
             return repositoryDescriptor.preventContextualContentFor;
         },
-        _onDialogExecute : function(a){
+        _onDialogExecute: function (a) {
             console.log('_onDialogExecute');
             console.log(b);
         },
@@ -274,13 +282,15 @@ MultipleFileUpload
         _onDivClick: function (content) {
 
             console.log('here after pressing div');
-
+            that = this;
             this.contentSelectorDialog = new ContentSelectorDialog({
                 canSelectOwnerContent: false,
                 showButtons: false,
                 roots: this.roots,
                 allowedTypes: ["episerver.core.icontentdata"],
-                showAllLanguages: true
+                showAllLanguages: true,
+                ggg: 'ssss',
+                openWindow : this._internalSetContent
             });
 
             this.dialog = new Dialog({
@@ -289,102 +299,27 @@ MultipleFileUpload
                 content: this.contentSelectorDialog,
                 autofocus: true,
                 defaultActionsVisible: false,
-                closeIconVisible: false
+                closeIconVisible: true
             });
-
+            var self = this.dialog;
             this.dialog.definitionConsumer.add({
                 name: "close",
                 label: "CLOSE!",
-                action: function () {
+                action: function (aaa) {
                     //uploader.close();
-                    console.log(' this.dialog.definitionConsumer action close');
+                    console.log(' this.dialog.definitionConsumer action close ');
+                    //close the dialog we opened
+                    self.hide();
                 }
             });
 
-           
+
             this.connect(this.dialog, "onExecute", "_onDialogExecute");
             this.connect(this.dialog, 'onHide', '_onDialogHide');
 
-           // this.isShowingChildDialog = true;
+            // this.isShowingChildDialog = true;
             this.dialog.resize({ w: 700 });
-            this.dialog.show();
-
-            // only show close button for multiple files upload dialog
-          
-
-           
-
-            // var dialog = this._getDialog();
-            // dialog.show();
-
-            /*
-            // upload 
-            // only create diaglog if it is not available, otherwise, re-use it.
-            var uploader = new MultipleFileUpload({
-                model: new MultipleFileUploadViewModel({
-                    store: this.get("store"),
-                    query: this.get("listQuery")
-                })
-            });
-
-
-            uploader.on("beforeUploaderChange", lang.hitch(this, function () {
-                this._uploading = true;
-            }));
-
-            // close multiple files upload dialog when stop uploading
-            uploader.on("close", lang.hitch(this, function (uploading) {
-                this._dialog && (uploading ? this._dialog.hide() : this._dialog.destroy());
-            }));
-
-            // Reload current folder of tree, to reflect changes        //Array/
-            uploader.on("uploadComplete", lang.hitch(this, function (uploadFiles) {
-                // Set current tree item again to reload items in list.
-                if (uploader.createAsLocalAsset) {
-                    when(this.treeStoreModel && typeof this.treeStoreModel.refreshRoots === "function" && this.treeStoreModel.refreshRoots(this), lang.hitch(this, function () {
-                        // Turn-off createAsLocalAsset
-                        uploader.set("createAsLocalAsset", false);
-                        // Update uploading directory after create a new real one local asset folder for the given content
-                        uploader.set("uploadDirectory", this.get("currentTreeItem").id);
-                        // Update content list query after create a new real one local asset folder for the given content
-                        uploader.model.set("query", this.get("listQuery"));
-                    }));
-                } else {
-                    this.onListItemUpdated(uploadFiles);
-                    this.set("currentTreeItem", this.get("currentTreeItem"));
-                }
-
-                if (this._dialog && !this._dialog.open) {
-                    this._dialog.destroy();
-                }
-
-                this._uploading = false;
-            }));
-             
-            this._dialog = new Dialog({
-                title: "SOMETHING!",
-                dialogClass: "epi-dialog-upload",
-                content: contentSelectorInternal,//uploader,
-                autofocus: true,
-                defaultActionsVisible: false,
-                closeIconVisible: false
-            });
-
-            // only show close button for multiple files upload dialog
-            this._dialog.definitionConsumer.add({
-                name: "close",
-                label: "CLOSE!",
-                action: function () {
-                    uploader.close();
-                }
-            });
-
-            this._dialog.resize({ w: 700 });
-            this._dialog.show();
-
-            // var dialog = this._getDialog();
-            // dialog.show();
-            */
+            this.dialog.show();               
         },
 
         _getTypesToDisplay: function () {
