@@ -394,6 +394,7 @@ function (
             // upload 
             // only create diaglog if it is not available, otherwise, re-use it.
             var uploader = new MultipleFileUpload({
+                extra : { folder : content},
                 model: new MultipleFileUploadViewModel({
                     store: this.get("store"),
                     query: this.get("listQuery")
@@ -411,28 +412,28 @@ function (
             }));
 
             // Reload current folder of tree, to reflect changes        //Array/
-            uploader.on("uploadComplete", lang.hitch(this, function (uploadFiles) {
-                // Set current tree item again to reload items in list.
-                if (uploader.createAsLocalAsset) {
-                    when(this.treeStoreModel && typeof this.treeStoreModel.refreshRoots === "function" && this.treeStoreModel.refreshRoots(this), lang.hitch(this, function () {
-                        // Turn-off createAsLocalAsset
-                        uploader.set("createAsLocalAsset", false);
-                        // Update uploading directory after create a new real one local asset folder for the given content
-                        uploader.set("uploadDirectory", this.get("currentTreeItem").id);
-                        // Update content list query after create a new real one local asset folder for the given content
-                        uploader.model.set("query", this.get("listQuery"));
-                    }));
-                } else {
-                    this.onListItemUpdated(uploadFiles);
-                    this.set("currentTreeItem", this.get("currentTreeItem"));
-                }
+            //uploader.on("uploadComplete", lang.hitch(this, function (uploadFiles) {
+            //    // Set current tree item again to reload items in list.
+            //    if (uploader.createAsLocalAsset) {
+            //        when(this.treeStoreModel && typeof this.treeStoreModel.refreshRoots === "function" && this.treeStoreModel.refreshRoots(this), lang.hitch(this, function () {
+            //            // Turn-off createAsLocalAsset
+            //            uploader.set("createAsLocalAsset", false);
+            //            // Update uploading directory after create a new real one local asset folder for the given content
+            //            uploader.set("uploadDirectory", this.get("currentTreeItem").id);
+            //            // Update content list query after create a new real one local asset folder for the given content
+            //            uploader.model.set("query", this.get("listQuery"));
+            //        }));
+            //    } else {
+            //        this.onListItemUpdated(uploadFiles);
+            //        this.set("currentTreeItem", this.get("currentTreeItem"));
+            //    }
 
-                if (this._dialog && !this._dialog.open) {
-                    this._dialog.destroy();
-                }
+            //    if (this._dialog && !this._dialog.open) {
+            //        this._dialog.destroy();
+            //    }
 
-                this._uploading = false;
-            }));
+            //    this._uploading = false;
+            //}));
 
             this._dialog = new Dialog({
                 title: "SOMETHING!",
@@ -455,11 +456,61 @@ function (
             this._dialog.resize({ w: 700 });
             this._dialog.show();
 
-            // var dialog = this._getDialog();
-            // dialog.show();
+            //From MediaViewModel 
+            createAsLocalAsset = false;
+            targetId = content.contentLink;
+
+            fileList = null;
+            var selectedContent = content;// createAsLocalAsset ? this.selection.data[0].data : this.store.get(targetId);
+            when(selectedContent, lang.hitch(this, function (content) {
+                // Update breadcumb on upload dialog.
+                this._buildBreadcrumb(content, uploader);
+
+                // Set destination is current tree item.
+                uploader.set("uploadDirectory", targetId || this.get("currentTreeItem").id);
+                uploader.set("createAsLocalAsset", createAsLocalAsset);
+
+                uploader.upload(fileList);
+            }));
 
         },
+        _buildBreadcrumb: function (contentItem, uploader) {
+            // summary:
+            //      Build breadcrumb for the provided content
+            // contentItem: Object
+            //      The provided content
+            // uploader: Object
+            //      The multiple file upload control
+            // tags:
+            //      private
 
+            if (!uploader) {
+                return;
+            }
+
+            //// Do not add more items when current content is sub root
+            //if (this.treeStoreModel.isTypeOfRoot(contentItem)) {
+            //    uploader.set("breadcrumb", [contentItem]);
+            //    return;
+            //}
+
+            //this.treeStoreModel.getAncestors(contentItem.contentLink, lang.hitch(this, function (ancestors) {
+            //    var ancestor,
+            //        paths = [contentItem];
+
+            //    for (var i = ancestors.length - 1; i >= 0; i--) {
+            //        ancestor = ancestors[i];
+            //        paths.unshift(ancestor);
+
+            //        // Break after first sub root or context root
+            //        if (this.treeStoreModel.isTypeOfRoot(ancestor)) {
+            //            break;
+            //        }
+            //    }
+
+            //    uploader.set("breadcrumb", paths);
+            //}));
+        },
         _checkAcceptance: function (typeIdentifier) {
             // summary:
             //    Compares a type against arrays of allowed and restricted types
