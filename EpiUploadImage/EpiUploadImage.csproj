@@ -249,6 +249,8 @@
     <Content Include="ClientResources\Scripts\editors\ContentSelectorDialog_extended2.js" />
     <Content Include="ClientResources\Scripts\editors\contentSelector_extended.js" />
     <Content Include="ClientResources\Scripts\editors\mediaselect_extended.js" />
+    <Content Include="ClientResources\Scripts\editors\templates\MultipleFileUpload.html" />
+    <Content Include="ClientResources\Scripts\editors\MultipleFileUpload_extended.js" />
     <Content Include="Views\Web.config" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />

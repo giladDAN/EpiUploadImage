@@ -263,7 +263,14 @@ MultipleFileUpload
 
             return repositoryDescriptor.preventContextualContentFor;
         },
-
+        _onDialogExecute : function(a){
+            console.log('_onDialogExecute');
+            console.log(b);
+        },
+        _onDialogHide: function (a) {
+            console.log('_onDialogHide');
+            console.log(a);
+        },
         _onDivClick: function (content) {
 
             console.log('here after pressing div');
@@ -289,11 +296,14 @@ MultipleFileUpload
                 name: "close",
                 label: "CLOSE!",
                 action: function () {
-                    uploader.close();
+                    //uploader.close();
+                    console.log(' this.dialog.definitionConsumer action close');
                 }
             });
-         //   this.connect(this.dialog, "onExecute", "_onDialogExecute");
-          //  this.connect(this.dialog, 'onHide', '_onDialogHide');
+
+           
+            this.connect(this.dialog, "onExecute", "_onDialogExecute");
+            this.connect(this.dialog, 'onHide', '_onDialogHide');
 
            // this.isShowingChildDialog = true;
             this.dialog.resize({ w: 700 });

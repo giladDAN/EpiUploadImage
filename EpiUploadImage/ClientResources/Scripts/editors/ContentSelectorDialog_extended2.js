@@ -28,7 +28,8 @@
     //additional 
 "epi/shell/widget/dialog/Dialog",
 "epi-cms/widget/viewmodel/MultipleFileUploadViewModel",
-"epi-cms/widget/MultipleFileUpload"
+//"epi-cms/widget/MultipleFileUpload" OC
+"extended/editors/MultipleFileUpload_extended"
 ],
 
 function (
@@ -365,6 +366,7 @@ function (
             : [];
         },
 
+        // Thios funciton is called when pressing on tree
         _onTreeNodeClick: function (content) {
             // summary:
             //    Handle the inner tree's content change event.
@@ -382,7 +384,9 @@ function (
                 value = null;
             }
 
-            this.set('value', value);
+            //  this.set('value', value);  OC
+
+
             //OC: this.onChange(this.get('value'));
 
             //OPEN new window upload
