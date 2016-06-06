@@ -22,7 +22,7 @@ namespace EpiUploadImage.Business
     {
         public ImageUrlEditorDescriptorExtended()
         {
-            //  this.ClientEditingClass = "app.gili.daniel";
+           
         }
         public override void ModifyMetadata(ExtendedMetadata metadata, 
             IEnumerable<Attribute> attributes)

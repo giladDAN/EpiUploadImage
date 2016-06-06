@@ -290,11 +290,11 @@ MultipleFileUpload
             console.log('here after pressing div');
             that = this;
             this.contentSelectorDialog = new ContentSelectorDialog({
-                canSelectOwnerContent: false,
-                showButtons: false,
-                roots: this.roots,
-                allowedTypes: ["episerver.core.icontentdata"],
-                showAllLanguages: true,
+                canSelectOwnerContent: true,
+                showButtons: true,
+                //roots: this.roots,
+               // allowedTypes: ["episerver.core.icontentdata"],
+               // showAllLanguages: true,
                 ggg: 'ssss',
                 openWindow : this._internalSetContent
             });

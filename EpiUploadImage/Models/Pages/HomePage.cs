@@ -27,6 +27,7 @@ namespace EpiUploadImage.Models.Pages
         public virtual ContentReference Image { get; set; }
 
 
+        [UIHint(UIHint.Image)]
         [EditorDescriptor(EditorDescriptorType = typeof(ImageUrlEditorDescriptorExtended))]      
         public virtual ContentReference Logotype1 { get; set; }
 
