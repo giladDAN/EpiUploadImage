@@ -16,7 +16,7 @@ namespace EpiUploadImage.Models.Media
                 [Editable(true)]
                 [Display(
                     Name = "Description",
-                    Description = "Description field's description",
+                    Description = "Descri1ption field's description",
                     GroupName = SystemTabNames.Content,
                     Order = 1)]
                 public virtual string Description { get; set; }

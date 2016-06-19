@@ -228,6 +228,7 @@
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <ItemGroup>
+    <Compile Include="Business\DataPush.cs" />
     <Compile Include="Business\ImageUrlEditorDescriptorExtended.cs" />
     <Compile Include="Controllers\HomePageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -235,6 +236,7 @@
     </Compile>
     <Compile Include="Models\Media\DefaultMedia.cs" />
     <Compile Include="Models\Pages\HomePage.cs" />
+    <Compile Include="Models\Pages\TestPageType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
