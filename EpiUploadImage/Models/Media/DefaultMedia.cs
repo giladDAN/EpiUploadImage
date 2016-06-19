@@ -8,7 +8,7 @@ using EPiServer.Framework.DataAnnotations;
 namespace EpiUploadImage.Models.Media
 {
     [ContentType(DisplayName = "DefaultMedia", GUID = "5debb020-d36b-43b5-b233-0f5474ed2e02", Description = "")]
-    [MediaDescriptor(ExtensionString = "pdf,doc,docx,png,jpg,jpeg,gif")]
+    [MediaDescriptor(ExtensionString = "pdf,doc,docx")]
     public class DefaultMedia : MediaData
     {
        
