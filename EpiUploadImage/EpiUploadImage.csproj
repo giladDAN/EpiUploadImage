@@ -193,6 +193,14 @@
       <HintPath>..\packages\NuGet.Core.2.5.0\lib\net40-Client\NuGet.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="QBankModule, Version=4.1.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QBankModule.4.1.6.0\lib\QBankModule.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.0.1\lib\net4\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="StructureMap, Version=3.1.6.186, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
       <HintPath>..\packages\structuremap-signed.3.1.6.186\lib\net40\StructureMap.dll</HintPath>
       <Private>True</Private>
@@ -298,9 +306,23 @@
     <Content Include="ClientResources\Scripts\editors\MediaViewModel_extended.js" />
     <Content Include="ClientResources\Scripts\editors\templates\MultipleFileUpload.html" />
     <Content Include="ClientResources\Scripts\editors\MultipleFileUpload_extended.js" />
+    <Content Include="modules\_protected\QBankModule\ClientResources\Images\qbank-loader.gif" />
+    <Content Include="modules\_protected\QBankModule\ClientResources\Images\qbankadd.png" />
+    <Content Include="modules\_protected\QBankModule\ClientResources\QBankConnect.html" />
+    <Content Include="modules\_protected\QBankModule\ClientResources\Scripts\Editors\QBankMediaPicker.js" />
+    <Content Include="modules\_protected\QBankModule\ClientResources\Scripts\jquery.js" />
+    <Content Include="modules\_protected\QBankModule\ClientResources\Scripts\qbank-connector.js" />
+    <Content Include="modules\_protected\QBankModule\ClientResources\Scripts\QBankResponsiveLight-1.0.js" />
+    <Content Include="modules\_protected\QBankModule\ClientResources\Styles\qbankplugin.css" />
+    <Content Include="modules\_protected\QBankModule\QBankMenuItem.aspx" />
+    <Content Include="modules\_protected\QBankModule\QbankPlugIn.aspx" />
+    <Content Include="modules\_protected\QBankModule\TinyPlugin\editor_plugin.js" />
+    <Content Include="modules\_protected\QBankModule\TinyPlugin\Img\qbank.png" />
     <Content Include="Views\Web.config" />
     <Content Include="Global.asax" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Data\GeoLiteCity.dat" />
     <None Include="EPiServerLog.config">
       <SubType>Designer</SubType>
@@ -317,6 +339,8 @@
     <Content Include="Views\Shared\TemplateError.cshtml" />
     <Content Include="Views\Shared\TemplateHint.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Image.cshtml" />
+    <Content Include="modules\_protected\QBankModule\Views\Shared\DisplayTemplates\QbankMedia.cshtml" />
+    <Content Include="modules\_protected\QBankModule\module.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

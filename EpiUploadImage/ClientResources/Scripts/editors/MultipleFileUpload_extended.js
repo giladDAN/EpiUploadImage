@@ -31,6 +31,8 @@ define([
     "epi-cms/widget/UploadUtil",
 
     "epi-cms/widget/viewmodel/FileListViewModel",
+     "epi-cms/core/ContentReference",
+       "epi/dependency",
 // templates
     "dojo/text!./templates/MultipleFileUpload.html",
 // resources
@@ -71,6 +73,8 @@ function (
     UploadUtil,
 
     FileListViewModel,
+    ContentReference,
+    dependency,
 // templates
     template,
 // resources
@@ -89,6 +93,11 @@ function (
         // _isCompleted: [private] Boolean
         //      Status of upload files progress
         _isCompleted: true,
+
+        // listQuery: Query
+        //      Query object holding parameters to get the children.
+        //      of the current tree item
+        listQuery: null,
 
         // Upload failed exception list
         _uploadStatus: [],
@@ -410,29 +419,71 @@ function (
             this.set("disableToolbar", false);
             this._clearUploadFiles();
             this.emit("uploadComplete", !this._fileListModel.uploadStatus ? this._fileListModel.uploadFiles : null);
-            
 
-            //this set the content npow 8
-            this._getUploadSettings().openWindow("8");
+            var item = ContentReference.toContentReference(this.uploadDirectory);
+
+            var registry = dependency.resolve("epi.storeregistry");
+            this._store = registry.get("epi.cms.content.light");
+
+            //var registry = dependency.resolve("epi.shell.store.Registry"),
+            //    store = registry.get("epi.cms.contentversion"),
+            //    query = store.query({
+            //        id: this.uploadDirectory,
+            //         language: "en"
+            //    });
+
+            //query.observe(dojo.hitch(this, this.onChange));
+            //query.then(function (results) {
+            //    this.view.data = results;
+            //});
+
+
+
+            var q = { referenceId: this.uploadDirectory, query: "getchildren" };//, allLanguages: showAllLanguages, typeIdentifiers: contentTypes }
+
+            this.set("listQuery", q);
+
+            var self = this;
+            dojo.when(this._store.query(q), function (result) {
+
+                var contentLink = -1; // should i set something default here ?
+                if (result && result.length >0) {
+                    var a = result;
+
+                    var items = result.sort(function (a, b) { return parseInt(a.contentLink) < parseInt(b.contentLink) });
+                    var hopefullyfirstItem = items[0];
+                    contentLink = hopefullyfirstItem.contentLink;
+                }
+                self._getUploadSettings().openWindow(contentLink);
+
+                dijit.registry.toArray().filter(function (w) {
+                    return w 
+                        //&&
+                    //    (w.declaredClass == "extended.editors.ContentSelectorDialog_extended2"
+                    //    || w.declaredClass == "extended.editors.MultipleFileUpload_extended"
+                    //    || w.declaredClass == "extended.editors.ContentSelectorDialog_extended"
+                    //    )
+                }).forEach(function (w) {
+
+                    try{
+                        w.hide();
+                        console.log(w.declaredClass);
+                    } catch (e) {
+                       // console.log(w.declaredClass);
+                    }
+                    //
+                });
+
+            });
+
+            //http://<www.yoursite.com>/EPiServer/cms/Stores/contentstructure/?referenceId=<parentfolderid>&query=getchildren&allLanguages=true&typeIdentifiers=episerver.core.icontentmedia&sort(+name)
+           
+            //var tr = this.listQuery;
+            ////this set the content npow 8
+            //this._getUploadSettings().openWindow(this.uploadDirectory);
           
 
-            dijit.registry.toArray().filter(function (w) {
-                return w 
-                    //&&
-                //    (w.declaredClass == "extended.editors.ContentSelectorDialog_extended2"
-                //    || w.declaredClass == "extended.editors.MultipleFileUpload_extended"
-                //    || w.declaredClass == "extended.editors.ContentSelectorDialog_extended"
-                //    )
-            }).forEach(function (w) {
-              
-                try{
-                    w.hide();
-                    console.log(w.declaredClass);
-                } catch (e) {
-                   // console.log(w.declaredClass);
-                }
-                //
-            });
+          
 
         }
     });
