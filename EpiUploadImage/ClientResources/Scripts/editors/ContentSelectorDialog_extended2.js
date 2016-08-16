@@ -23,7 +23,7 @@
     "epi/dependency",
 
 // Resources
-    "epi/i18n!epi/cms/nls/episerver.cms.widget.contentselectordialog" ,
+    "epi/i18n!epi/cms/nls/episerver.cms.widget.contentselectordialog",
 
     //additional 
 "epi/shell/widget/dialog/Dialog",
@@ -135,10 +135,10 @@ function (
         _searchBox: null,
 
         //NEW
-        openWindow: function(value){
-        
+        openWindow: function (value) {
+
             console.log('2 open window');
-         },
+        },
 
         buildRendering: function () {
             this.inherited(arguments);
@@ -195,7 +195,7 @@ function (
                 disableRestrictedTypes: true,
                 expandExtraNodeItems: ApplicationSettings.startPage // Set extra node items to expand when the given tree loaded
             });
-             // OC
+            // OC
             //this.tree = new ContentTree({
             //    roots: roots,
             //    typeIdentifiers: typeIdentifiers,
@@ -446,9 +446,9 @@ function (
             //}));
 
             this._dialog = new Dialog({
-                title: "SOMETHING!",
+                title: "Upload Image",
                 dialogClass: "epi-dialog-upload",
-                content:uploader,
+                content: uploader,
                 autofocus: true,
                 defaultActionsVisible: false,
                 closeIconVisible: true
@@ -461,7 +461,7 @@ function (
                 action: function () {
                     console.log('close here in 2');
                     uploader.close();
-                   // self.hide();
+                    // self.hide();
                 }
             });
 

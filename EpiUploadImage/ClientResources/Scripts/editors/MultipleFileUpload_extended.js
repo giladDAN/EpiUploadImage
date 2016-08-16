@@ -426,8 +426,8 @@ function (
             this._store = registry.get("epi.cms.content.light");
 
             //var registry = dependency.resolve("epi.shell.store.Registry"),
-            //    store = registry.get("epi.cms.contentversion"),
-            //    query = store.query({
+            //    store = registry.get("epi.cms.contentversion"),
+            //    query = store.query({
             //        id: this.uploadDirectory,
             //         language: "en"
             //    });
@@ -447,7 +447,7 @@ function (
             dojo.when(this._store.query(q), function (result) {
 
                 var contentLink = -1; // should i set something default here ?
-                if (result && result.length >0) {
+                if (result && result.length > 0) {
                     var a = result;
 
                     var items = result.sort(function (a, b) { return parseInt(a.contentLink) < parseInt(b.contentLink) });
@@ -457,19 +457,19 @@ function (
                 self._getUploadSettings().openWindow(contentLink);
 
                 dijit.registry.toArray().filter(function (w) {
-                    return w 
-                        //&&
+                    return w
+                    //&&
                     //    (w.declaredClass == "extended.editors.ContentSelectorDialog_extended2"
                     //    || w.declaredClass == "extended.editors.MultipleFileUpload_extended"
                     //    || w.declaredClass == "extended.editors.ContentSelectorDialog_extended"
                     //    )
                 }).forEach(function (w) {
 
-                    try{
+                    try {
                         w.hide();
                         console.log(w.declaredClass);
                     } catch (e) {
-                       // console.log(w.declaredClass);
+                        // console.log(w.declaredClass);
                     }
                     //
                 });
@@ -477,13 +477,13 @@ function (
             });
 
             //http://<www.yoursite.com>/EPiServer/cms/Stores/contentstructure/?referenceId=<parentfolderid>&query=getchildren&allLanguages=true&typeIdentifiers=episerver.core.icontentmedia&sort(+name)
-           
+
             //var tr = this.listQuery;
             ////this set the content npow 8
             //this._getUploadSettings().openWindow(this.uploadDirectory);
-          
 
-          
+
+
 
         }
     });

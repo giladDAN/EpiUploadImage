@@ -18,12 +18,12 @@ define([
 
 // EPi CMS
     "epi-cms/core/ContentReference",
-    "epi-cms/core/PermanentLinkHelper",      
+    "epi-cms/core/PermanentLinkHelper",
     // now instead of Orignal Content Selector i copied and create a new one
     //"epi-cms/widget/ContentSelector"
     //IMPORTANT LEAVE / in names here and . in name of widget
     "extended/editors/ContentSelector_extended"
-   
+
 ], function (
 // Dojo
     declare,
@@ -86,7 +86,7 @@ define([
                 this._updateDisplayNode(content);
 
                 // We need to recreate the internal format before saving the data.
-                
+
                 //  var urlFormatValue = content.permanentLink; OC
                 var urlFormatValue = content.contentLink;
                 this._started && this.validate();
@@ -94,7 +94,7 @@ define([
                 //this is for string , let change to content 
                 if (this.value) {
                     isModified = !epi.areEqual(this.value.contentLink, urlFormatValue.contentLink);
-                } else { isModified = true;}
+                } else { isModified = true; }
 
                 this.value = urlFormatValue;
 

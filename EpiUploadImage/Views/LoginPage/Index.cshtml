@@ -1,0 +1,34 @@
+﻿@using EPiServer.Globalization
+@using EPiServer.Core
+@using EPiServer.Web.Mvc.Html
+
+
+@model EpiUploadImage.Models.ViewModel.LoginModel
+
+
+
+
+<div class="row">
+    @using (Html.BeginForm("Post", null, new { language = ContentLanguage.PreferredCulture.Name }))
+            {
+        <div class="logo"></div>
+            @Html.AntiForgeryToken()
+            <h2 class="form-signin-heading">Log in</h2>
+                @Html.LabelFor(m => m.LoginPostbackData.Username, new { @class = "sr-only" })
+                @Html.TextBoxFor(m => m.LoginPostbackData.Username, new { @class = "form-control", autofocus = "autofocus" })
+
+                @Html.LabelFor(m => m.LoginPostbackData.Password, new { @class = "sr-only" })
+                @Html.PasswordFor(m => m.LoginPostbackData.Password, new { @class = "form-control" })
+                <div class="checkbox">
+                    <label>
+                        @Html.CheckBoxFor(m => m.LoginPostbackData.RememberMe)
+                        @Html.DisplayNameFor(m => m.LoginPostbackData.RememberMe)
+                    </label>
+                </div>
+
+                @Html.HiddenFor(m => m.LoginPostbackData.ReturnUrl)
+                <input type="submit" value="Log in" class="btn btn-lg btn-primary btn-block" />
+    }
+    @Html.DisplayFor(m => m.Message)
+</div>
+

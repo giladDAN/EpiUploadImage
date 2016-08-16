@@ -233,6 +233,7 @@
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
       <Private>True</Private>
@@ -276,14 +277,18 @@
   <ItemGroup>
     <Compile Include="Business\DataPush.cs" />
     <Compile Include="Business\ImageUrlEditorDescriptorExtended.cs" />
+    <Compile Include="Business\mob.cs" />
     <Compile Include="Controllers\HomePageController.cs" />
+    <Compile Include="Controllers\LoginPageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Media\DefaultMedia.cs" />
     <Compile Include="Models\Media\ImageFile.cs" />
     <Compile Include="Models\Pages\HomePage.cs" />
+    <Compile Include="Models\Pages\LoginPage.cs" />
     <Compile Include="Models\Pages\TestPageType.cs" />
+    <Compile Include="Models\ViewModel\LoginModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -291,6 +296,7 @@
     <Folder Include="Models\Properties\" />
     <Folder Include="Scripts\editors\" />
     <Folder Include="Static\" />
+    <Folder Include="Util\Editor\tinymce\plugins\mybutton\js\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\blobs\6ab82c9908e24b00a37dc6161aa74267\bb6b242f94a24723bf11fbff6dc4c6b3.png" />
@@ -318,6 +324,10 @@
     <Content Include="modules\_protected\QBankModule\QbankPlugIn.aspx" />
     <Content Include="modules\_protected\QBankModule\TinyPlugin\editor_plugin.js" />
     <Content Include="modules\_protected\QBankModule\TinyPlugin\Img\qbank.png" />
+    <Content Include="Util\Editor\tinymce\plugins\mybutton\editor_plugin_src.js" />
+    <Content Include="Util\Editor\tinymce\plugins\mybutton\editor_plugin.js" />
+    <Content Include="Util\Editor\tinymce\plugins\mybutton\images\space_capsule.png" />
+    <Content Include="Util\Editor\tinymce\plugins\mybutton\images\telescope.png" />
     <Content Include="Views\Web.config" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
@@ -341,6 +351,7 @@
     <Content Include="Views\Shared\DisplayTemplates\Image.cshtml" />
     <Content Include="modules\_protected\QBankModule\Views\Shared\DisplayTemplates\QbankMedia.cshtml" />
     <Content Include="modules\_protected\QBankModule\module.config" />
+    <Content Include="Views\LoginPage\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

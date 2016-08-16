@@ -142,7 +142,7 @@ MultipleFileUpload
 
         _searchBox: null,
 
-        ppp : null,
+        ppp: null,
 
         buildRendering: function () {
             this.inherited(arguments);
@@ -166,7 +166,7 @@ MultipleFileUpload
             //now add something new 
             this.tmpDiv = new ContentPane({
                 region: "top",
-                content: '<strong>Add New Media Item</strong> <span class="dijit dijitReset dijitInline dijitButton Salt" ><span class="dijitReset dijitInline dijitButtonNode" ><span class="dijitReset dijitStretch dijitButtonContents" data-dojo-attach-point="titleNode,focusNode" aria-disabled="false" ><span class="dijitReset dijitInline dijitIcon dijitNoIcon" data-dojo-attach-point="iconNode"></span><span class="dijitReset dijitToggleButtonIconChar">●</span><span class="dijitReset dijitInline dijitButtonText" >+</span></span></span><input type="submit" value="" class="dijitOffScreen" tabindex="-1" ></span><hr/>'
+                content: '<strong>Add New Media Item</strong> <span class="dijit dijitReset dijitInline dijitButton Salt" ><span class="dijitReset dijitInline dijitButtonNode" ><span class="dijitReset dijitStretch dijitButtonContents" data-dojo-attach-point="titleNode,focusNode" aria-disabled="false" ><span class="dijitReset dijitInline dijitIcon dijitNoIcon" data-dojo-attach-point="iconNode"></span><span class="dijitReset dijitToggleButtonIconChar">●</span><span class="dijitReset dijitInline dijitButtonText" >+</span></span></span><input type="submit" value="" class="dijitOffScreen" tabindex="-1" ></span>'
             });
             this.addChild(this.tmpDiv);
 
@@ -222,7 +222,7 @@ MultipleFileUpload
 
             this.connect(this.tree, "onClick", "_onTreeNodeClick");
 
-          
+
         },
 
         _internalSetContent: function (value) {
@@ -293,10 +293,10 @@ MultipleFileUpload
                 canSelectOwnerContent: true,
                 showButtons: true,
                 //roots: this.roots,
-               // allowedTypes: ["episerver.core.icontentdata"],
-               // showAllLanguages: true,
+                // allowedTypes: ["episerver.core.icontentdata"],
+                // showAllLanguages: true,
                 ggg: 'ssss',
-                openWindow : this._internalSetContent
+                openWindow: this._internalSetContent
             });
 
             this.dialog = new Dialog({
@@ -325,7 +325,7 @@ MultipleFileUpload
 
             // this.isShowingChildDialog = true;
             this.dialog.resize({ w: 700 });
-            this.dialog.show();               
+            this.dialog.show();
         },
 
         _getTypesToDisplay: function () {

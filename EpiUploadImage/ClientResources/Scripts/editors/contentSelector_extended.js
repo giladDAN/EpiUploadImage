@@ -1,4 +1,4 @@
-﻿define( [
+﻿define([
 // dojo
     "dojo/_base/array",
     "dojo/_base/declare",
@@ -109,7 +109,7 @@ function (
         //      Search area for the search box.
         searchArea: null,
 
-        RRR : null,
+        RRR: null,
 
         _setDisabledAttr: function (value) {
             this.inherited(arguments);
@@ -184,9 +184,9 @@ function (
 
             this._setValueAndFireOnChange(value);
         },
-        _setValuesExtended : function(){
+        _setValuesExtended: function () {
 
-        } ,
+        },
         _getDialog: function () {
             // summary:
             //		Create page tree dialog
